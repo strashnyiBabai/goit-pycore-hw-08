@@ -229,15 +229,21 @@ def birthdays(book: AddressBook):
     return "No birthdays in upcoming week"
 
 def save_data(book, filename="addressbook.pkl"):
+    """Save AddressBook with all the info inside in 'addressbook.pkl'
+        When program is launched next time 
+        it will have all data from previous usage"""
     with open(filename, "wb") as f:
         pickle.dump(book, f)
 
 def load_data(filename="addressbook.pkl"):
+    """Return AddressBook from previous use of the program.
+        By default it saved in 'addressbook.pkl' 
+        in current directory"""
     try:
         with open(filename, "rb") as f:
             return pickle.load(f)
     except FileNotFoundError:
-        return AddressBook()  # Повернення нової адресної книги, якщо файл не знайдено
+        return AddressBook()  # return empty AddressBook if found None
 
 def main():
     """Main starts the bot for saving phone numbers"""
